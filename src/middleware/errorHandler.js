@@ -46,7 +46,7 @@ const errorHandler = (err, req, res, next) => {
 
   if (status >= 500) {
     console.error('💥', err);
-    if (env.isProduction) message = MENSAJES.ERROR_INTERNO;
+    if (env.isProduction && !err.isOperational) message = MENSAJES.ERROR_INTERNO;
   }
 
   res.status(status).json({
